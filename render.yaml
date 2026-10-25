@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: fitfuel-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
