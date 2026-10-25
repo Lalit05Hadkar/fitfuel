@@ -8,11 +8,12 @@ import '../models.dart';
 /// Talks to the FitFuel FastAPI backend (see /backend). The backend holds the
 /// AI API key, so the key never ships inside the app.
 ///
-/// Set the address when you run the app:
+/// The default is the hosted backend, so the app works on any Wi-Fi or mobile data.
+/// To use a backend on your own computer instead, set the address when you run the app:
 ///   flutter run --dart-define=API_URL=http://192.168.1.20:8000
-/// The default 10.0.2.2 is how the Android emulator reaches your computer.
+/// (10.0.2.2 is how the Android emulator reaches your computer.)
 class AiService {
-  static const baseUrl = String.fromEnvironment('API_URL', defaultValue: 'http://10.0.2.2:8000');
+  static const baseUrl = String.fromEnvironment('API_URL', defaultValue: 'https://fitfuel-api.onrender.com');
 
   Future<ScanResult> analysePhoto(File photo, {required Meal meal, required Diet diet}) async {
     final req = http.MultipartRequest('POST', Uri.parse('$baseUrl/analyze/photo'))
